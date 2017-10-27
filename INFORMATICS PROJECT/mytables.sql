@@ -1,11 +1,12 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS lists;
-DROP TABLE IF EXISTS master;
+DROP TABLE IF EXISTS master CASCADE ;
+DROP TABLE IF EXISTS users CASCADE ;
+DROP TABLE IF EXISTS lists CASCADE ;
+
 
 CREATE TABLE users(
     userid  INT NOT NULL AUTO_INCREMENT,
     username VARCHAR (200) NOT NULL,
-    pass    VARCHAR (200),
+    pass    VARCHAR (200) NOT NULL,
     firstname CHARACTER (50),
     lastname CHARACTER (50),
     email VARCHAR (100),
