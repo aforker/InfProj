@@ -89,7 +89,20 @@
               }
           });            
       };   
-       
+      
+      $scope.loadlists = function() {
+         
+         $http.post("loadlists.php")
+            .then(function (response) {
+               if(response.status == 200) {
+                  if(response.data.status == 'error') {
+                     alert ('error: ' + response.data.message);
+                  } else {
+                        alert('unexpected error');
+                  }
+               }
+            });
+      };
       // variables used in search bar
       $scope.query = {};
       $scope.queryBy = "$";
