@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html ng-app="votelist">
+<head>
+    <title>New </title>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>      
+       
+    <!-- bootstrap links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <script src="../angular/angular.min.js"></script>
+    <script type="text/javascript" src="votelist.module.js"></script>
+    
+    <!-- data controller -->
+    <script type="text/javascript" src="data.votelist.controller.js"></script>      
+</head>
+
+<div class = "container" ng-controller = "dataControl">
+    <div ng-include ng-init="menuHighlight = 2;"src="'header.html'"></div>
+    <body>
+        <div class = "row">
+            <!-- left hand playlist player panel-->
+            <div class = "col-xs-3">
+                <h2>Current List</h2>
+                <div class = "panel panel-default" >
+                    <div class="panel-heading">
+                        <h1>list name</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- middle panel -->
+            <div class="col-xs-9" >
+                <h2>Make A Item</h2>
+                <form name="listForm" novalidate>
+                    <div class = "panel panel-default">
+                        <div class="panel-heading">
+                            <!-- title -->
+                            <div class="control-group" ng-class="{ 'has-error' : listForm.title.$invalid && listForm.title.$touched, 'has-success' : !listForm.title.$invalid && listForm.title.$touched }">
+                                <h3>Title:</h3>
+                                <input type="text" class="form-control" name="title" ng-model="title" placeholder="Enter Item Title" required/></input>
+                                <p ng-show="listForm.username.$invalid && listForm.username.$touched" class="help-block">The title is required.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-9">
+                                <!-- add attributes -->
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label>Name</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <label>Type</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <label>Value</label>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <label>Actions</label>
+                                    </div>
+                                </div>
+                                <div data-ng-repeat="attribute in attributes">
+                                    <div class="control-group">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <input type="text" ng-model="item.attribute.name" name="" placeholder="Enter Attribute Name">
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <select ng-model ="item.attribute.type" placeholder="Select Attribute Type">
+                                                    <option>Text</option>
+                                                    <option>Number</option>
+                                                    <option>Date</option>
+                                                 </select>
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <input type="text" ng-model="item.attribute.value" name="" placeholder="Enter Attribute Value">
+                                            </div>
+                                            <div class="col-xs-3">
+                                                <button class="btn btn-default" ng-click="removeAttribute()">X</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>
+                                    
+                                    
+                                </p>
+                                <div class="control-group">
+                                    <div class = "row">
+                                        <div class="col-xs-3">
+                                            <button class="btn btn-default" ng-click="addNewAttribute()">Add Attribute</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-default pull-right" ng-click="makeItem(item)">Submit</button>
+                                <button class="btn btn-default pull-right" ng-click="addNewAttribute()">Cancel</button>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</div>
+</html>

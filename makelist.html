@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html ng-app="votelist">
+<head>
+    <title>New Account</title>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>      
+       
+    <!-- bootstrap links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <script src="../angular/angular.min.js"></script>
+    <script type="text/javascript" src="votelist.module.js"></script>
+    
+    <!-- data controller -->
+    <script type="text/javascript" src="data.votelist.controller.js"></script>      
+</head>
+
+<div class = "container" ng-controller = "dataControl">
+    <div ng-include ng-init="menuHighlight = 2;"src="'header.html'"></div>
+    <body>
+        <div class = "row">
+            <!-- left hand playlist player panel-->
+            <div class = "col-xs-3">
+                <h1>Current List</h1>
+                <div class = "panel panel-default" >
+                    <div class="panel-heading">
+                        <h1>list name</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-9" >
+                <h2>Make A List</h2>
+                <div class = "panel panel-default">
+                    <div class="panel-heading">
+                        <!-- title -->
+                        <div class="form-group" ng-class="{ 'has-error' : listForm.title.$invalid && listForm.title.$touched, 'has-success' : !listForm.title.$invalid && listForm.title.$touched }">
+                            <label>Title:</label>
+                            <input type="text" class="form-control" name="title" ng-model="list.title" required/>
+                            <p ng-show="listForm.title.$invalid && listForm.title.$touched" class="help-block">The title is required.</p>
+                        </div>
+                        <button class="btn btn-default" ng-click="saveList(list)" ng-disabled="addAnotherForm.$invalid">Save</button>
+                    </div>               
+                </div>            
+            </div>
+        </div>
+    </body>
+</div>
+</html>
