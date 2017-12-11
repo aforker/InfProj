@@ -36,6 +36,10 @@
                             </div>
                         </div>
                     </div>
+                <!--right hand dashboard navigator panel heading -->
+                    <div class = "col-xs-9">
+                        <h3> My Lists</h3>
+                    </div>
                 </div>
                 <div class = "col-xs-9" >
                     <!-- main panel -->
@@ -52,54 +56,20 @@
                             </div>
                         </div>
                     </div>
-                    <a ng-click="selectArea(null)" class="btn btn-default" role="button" >all</a><!--ng-class="getListClass('all')"-->
-                    <a ng-click="selectArea(list)" class="btn btn-default" role="button" ng-class="getListClass(list)">my list</a>
-                        <div ng-repeat="list in data | filter:areaFilter | filter:query "  class = "ng-scope">
-                            <div class = "panel panel-default">
-                                
-                                <div class = "panel-heading">
-                                    <h2>{{list.name}}</h2>
-                                </div>
-                                <div class = "panel-body">
-                                    <div class="panel panel-default" ng-repeat="item in list.items | filter:query">
-                                        <div class="panel-heading">
-                                                <h4>{{item.name}}</h4>
-                                        </div>
-                                        <div class = "panel-body">
-                                            <div ng-repeat="attribute in item.attributes">
-                                                <div ng-if="attribute.type=='text'">
-                                                    <strong>{{attribute.label}}</strong>: {{attribute.value}}
-                                                </div>
-                                                <div ng-if="attribute.type=='video'">
-                                                    <div class="embed-responsive embed-responsive-16by9">
-                                                        <span ng-bind-html="attribute.value | trustHtml"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="panel panel-default" ng-repeat="user in followers | filter:query">
+                        <h2>Following</h2>
+                        <div class = "panel-body">
+                            <div class="col-xs-6">
+                                <h4>{{user.username}}</h4>
+                            </div>
+                            <div class = "col-xs-6">
+                                <button type="button" class="btn btn-success pull-right" ng-click="follow(user.username)">+</button>
+                                <!--button type="button" class="btn btn-danger pull-right">Success</button-->
                             </div>
                         </div>
-                        <div class="panel panel-default" ng-repeat="user in followers | filter:query">
-                            <div class = "panel-body">
-                                <div class="col-xs-6">
-                                    <h2>Followers</h2>
-                                </div>
-                                <div class="col-xs-6">
-                                    <h4>{{user.username}}</h4>
-                                </div>
-                                <div class = "col-xs-6">
-                                    <button type="button" class="btn btn-success pull-right" ng-click="follow(user.username)">+</button>
-                                    <!--button type="button" class="btn btn-danger pull-right">Success</button-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                   
                 </div>
             </div>
-        </div>        
+        </div>
     </body>
 </div>
-
-</html>

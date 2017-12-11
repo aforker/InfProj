@@ -5,7 +5,20 @@
    myApp.controller("dataControl", function($scope, $window, $http) {
          //================================================================
          // gets userlist
+         $scope.followers = null;
          $scope.userlists = null;
+         $scope.listofusers = null;
+         // gets all lists belonging to a user
+         $http.get("getFollowers.php")
+            .then(function (response) {
+               $scope.followers = response.data.value;
+               alert($scope.followers);
+         });
+         // gets all lists belonging to a user
+         $http.get("loadusers.php")
+            .then(function (response) {
+               $scope.listofusers = response.data.value;
+         });
          // gets all lists belonging to a user
          $http.get("getUserLists.php")
             .then(function (response) {
@@ -365,11 +378,23 @@
          };
          //=================================================================
          //follow a user
-         $scope.follow = function(username){
+         $scope.follow = function(username) {
             alert(username);
-            var followeduser = angular.copy(username);
-            $http.post("followAUser.php", followeduser);
-          
+             var followed = angular.copy(username);           
+             $http.post("followAUser.php", followed)
+                 .then(function (response) {
+                 if (response.status == 200) {
+                     if (response.data.status == 'error') {
+                         alert ('error: ' + response.data.message);
+                     } else {
+                         //successful
+                         alert ('success: ' + response.data.message);
+                         //$window.location.href ="index.html";
+                     }
+                 } else {
+                     alert('unexpected error');
+                 }
+             });
          };
       });    
    }) ();
