@@ -20,8 +20,8 @@
         $isComplete = false;
     } else {
         $username = makeStringSafe($db, $username);
+		//concatenate for query structure
     }
-
     if (!isset($password)) {
         $errorMessage .= " Please enter a password.";
         $isComplete = false;
@@ -55,10 +55,15 @@
         }
     }
 	
-	if ($isComplete) {			
+	if ($isComplete) {
+		// start a session using php session variable
+        session_start();
+        $_SESSION['username'] = $username;
+		
+		//send response
         $response = array();
         $response['status'] = 'success';
-        $response['message'] = 'we did it bitch';
+        $response['message'] = $_SESSION['username'];
         header('Content-Type: application/json');
         echo(json_encode($response)); 
 	} else {
@@ -69,5 +74,4 @@
         header('Content-Type: application/json');
         echo(json_encode($response)); 
 	}
-
 ?>

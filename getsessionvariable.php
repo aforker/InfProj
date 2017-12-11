@@ -1,22 +1,21 @@
 <?php
-
     
     $isComplete = true;
-    $errorMessage = "";
-
+    $errorMessage = ""; //catch
     session_start();
     if (!isset($_SESSION['username'])) {
-
         $isComplete = false;
+        //error handling, log in
         $errorMessage .= " You are not logged in and cannot get a session variable. ";
     }
     
+    
     if ($isComplete) {
-
         $data = json_decode(file_get_contents('php://input'), true);
         $attribute = $data['attribute'];
         
         if (!isset($attribute)) {
+            //make sure some information is set
             $isComplete = false;
             $errorMessage .= " You need to submit a valid attribute. ";
         } else if (!isset($_SESSION[$attribute])) {

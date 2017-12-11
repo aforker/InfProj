@@ -4,13 +4,10 @@
     
     // define data type
     $data = json_decode(file_get_contents('php://input'), true);
-
-
     // define attributes passed in 
     $username = $data["username"];
     $password = $data["password"];
     $password2 = $data["password2"];
-
     // connect to database
     $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
     
@@ -21,7 +18,6 @@
     if (!isset($username)) {
         // concat error message
         $errorMessage .= "Please enter a username";
-
         $isComplete = false;
     } else {
         $username = makeStringSafe($db, $username);
@@ -31,6 +27,7 @@
         $errorMessage .= "Please enter a password. ";
         $isComplete = false;
     }
+	//user help
     
     if(!isset($password2)) {
         $errorMessage .= "please enter a password again.";
@@ -80,5 +77,4 @@
         header('Content-Type: application/json');
         echo(json_encode($response));   
 	}    
-
 ?>

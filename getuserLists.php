@@ -1,5 +1,4 @@
 <?php
-
 // header
     include_once('config.php');
     include_once('dbutils.php');
@@ -9,11 +8,17 @@
     // define attributes passed in 
     //$owner = $data["username"];
     // connect to database
-        
-    
+    session_start();
+    $username = 'kdzhou';//$_SESSION['username'];
+    // connect to the database
     $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
-    $query = "SELECT * FROM list;";
-    //run query
+    // write a query to extract id
+    $getuserid = "SELECT id FROM users WHERE username = '$username';";
+    $answer= queryDB($getuserid, $db);
+    // extract result
+    $ownerid = nextTuple($answer)['id'];
+    // select lists
+    $query = "SELECT * FROM list WHERE owner = '$ownerid' ;";
     $result = queryDB($query,$db);
     $listoflists = array();
     $a = 0;
@@ -43,6 +48,7 @@
             while ($attribute = nextTuple($result_attribute)) {
                 $attributes[$c] = $attribute;
                 $c++;
+                //increment each time
             }
             $items[$b]['attributes'] = $attributes;
             $b++;
@@ -57,5 +63,4 @@
     $response['value'] = $listoflists;
     header('Content-Type: application/json');
     echo(json_encode($response));
-    
 ?>

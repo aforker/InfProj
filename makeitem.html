@@ -40,7 +40,7 @@
                             <!-- title -->
                             <div class="control-group" ng-class="{ 'has-error' : listForm.title.$invalid && listForm.title.$touched, 'has-success' : !listForm.title.$invalid && listForm.title.$touched }">
                                 <h3>Title:</h3>
-                                <input type="text" class="form-control" name="title" ng-model="title" placeholder="Enter Item Title" required/></input>
+                                    <input type="text" class="form-control" ng-model = "item.title" name="" placeholder="Enter Item Title" required></input>
                                 <p ng-show="listForm.username.$invalid && listForm.username.$touched" class="help-block">The title is required.</p>
                             </div>
                         </div>
@@ -62,27 +62,32 @@
                                         <label>Actions</label>
                                     </div>
                                 </div>
-                                <div data-ng-repeat="attribute in attributes">
+                                <fieldset data-ng-repeat="attribute in attributes">
                                     <div class="control-group">
                                         <div class="row">
                                             <div class="col-xs-3">
-                                                <input type="text" ng-model="item.attribute.name" name="" placeholder="Enter Attribute Name">
+                                                <input type="text" ng-model="attribute.name" name="" placeholder="Enter Attribute Name"></input>
                                             </div>
                                             <div class="col-xs-3">
-                                                <select ng-model ="item.attribute.type" placeholder="Select Attribute Type">
-                                                    <option>Text</option>
-                                                    <option>Number</option>
-                                                    <option>Date</option>
+                                                <select ng-model ="attribute.type" placeholder="Select Attribute Type">
+                                                    <option>text</option>
+                                                    <option>number</option>
+                                                    <option>video</option>
                                                  </select>
                                             </div>
                                             <div class="col-xs-3">
-                                                <input type="text" ng-model="item.attribute.value" name="" placeholder="Enter Attribute Value">
+                                                <input type="text" ng-model="attribute.value" name="" placeholder="Enter Attribute Value"></input>
                                             </div>
+                                            
                                             <div class="col-xs-3">
                                                 <button class="btn btn-default" ng-click="removeAttribute()">X</button>
                                             </div>
                                         </div>
                                     </div>
+                                </fieldset>
+                                <button class="btn btn-default" ng-click="addNewAttribute()">Add Attribute</button>
+                                <div id="choicesDisplay">
+                                    {{ attributes }}
                                 </div>
                                 <p>
                                     
@@ -91,7 +96,8 @@
                                 <div class="control-group">
                                     <div class = "row">
                                         <div class="col-xs-3">
-                                            <button class="btn btn-default" ng-click="addNewAttribute()">Add Attribute</button>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>

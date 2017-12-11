@@ -1,19 +1,14 @@
 <?php
-
-// header
+    // import tools
     include_once('config.php');
     include_once('dbutils.php');
-        // define data type
-    //$data = json_decode(file_get_contents('php://input'), true);
-    
-    // define attributes passed in 
-    //$owner = $data["username"];
+    // session start to get list id
+    session_start();
+    $listid = $_SESSION['listid'];
     // connect to database
-        
-    
     $db = connectDB($DBHost, $DBUser, $DBPassword, $DBName);
-    $query = "SELECT * FROM list;";
-    //run query
+    // build query
+    $query = "SELECT * FROM list WHERE id = $listid;";
     $result = queryDB($query,$db);
     $listoflists = array();
     $a = 0;
@@ -57,5 +52,4 @@
     $response['value'] = $listoflists;
     header('Content-Type: application/json');
     echo(json_encode($response));
-    
 ?>

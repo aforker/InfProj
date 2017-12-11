@@ -1,15 +1,15 @@
 <?php
-    // log user out by unsetting session variable and ending the session
-    
+    //  remember session is a built in variable
     session_start();
     if (isset($_SESSION['username'])) {
         unset($_SESSION['username']);
     }
-    session_destroy();
+    session_destroy(); //end entire current session
     
     // send response back
     $response = array();
     $response['status'] = 'success';
+    $response['message'] = $_SESSION['username'];
     header('Content-Type: application/json');
     echo(json_encode($response));    
 ?>

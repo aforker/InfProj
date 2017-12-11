@@ -1,13 +1,13 @@
 <?php
 
     $isloggedin = false;
-    $username = "not logged in";
-    //credential check
+    $username = "Please log in to continue...";
+    
     session_start();
     if (isset($_SESSION['username'])) {
         $isloggedin = true;
         $username = isset($_SESSION['username']);
-    }
+    } 
     // send response back
     $response = array();
     $response['status'] = 'success';

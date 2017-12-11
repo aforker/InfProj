@@ -2,11 +2,22 @@ DROP TABLE IF EXISTS users CASCADE ;
 DROP TABLE IF EXISTS attribute CASCADE ;
 DROP TABLE IF EXISTS item CASCADE ;
 DROP TABLE IF EXISTS list CASCADE ;
+DROP TABLE IF EXISTS friends CASCADE;
 -- this is the table for users
+
+
+CREATE TABLE friends (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    user_id INTEGER NOT NULL,
+    follow_id INTEGER NOT NULL,  --VARCHAR???
+    friend BOOLEAN NOT NULL,
+    PRIMARY KEY (id)  --
+);
+
 CREATE TABLE users (
-    id INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT, -- to insure no duplication/ unique user each time
     username VARCHAR(120) NOT NULL,
-    pass VARCHAR(120),
+    password VARCHAR(120),
     PRIMARY KEY (id)
 );
 -- this is the table for lists
@@ -23,33 +34,21 @@ CREATE TABLE item (
     id INT NOT NULL AUTO_INCREMENT,
     list_id INT NOT NULL,
     name VARCHAR(120) NOT NULL,
-    ordernumber INT NOT NULL,
+    ordernumber INT,
     PRIMARY KEY (id)
 );
 -- attributes
 CREATE TABLE attribute (
     id INT NOT NULL AUTO_INCREMENT,
     item_id INT NOT NULL,
-    ordernumber INT NOT NULL,
+    ordernumber INT ,
     label VARCHAR(120) NOT NULL,
     type VARCHAR(120) NOT NULL,
     value VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)    
 );
 
--- insert some records
-INSERT INTO list (name) VALUES ('Soccer players');
-
-INSERT INTO item (list_id, name, ordernumber) VALUES (1, 'Lionel Messi', 0);
-INSERT INTO attribute (item_id, ordernumber, label, type, value) VALUES (1, 0, 'club', 'text', 'FC Barcelona');
-INSERT INTO attribute (item_id, ordernumber, label, type, value) VALUES (1, 1, 'national team', 'text', 'Argentina');
-INSERT INTO attribute (item_id, ordernumber, label, type, value) VALUES (1, 2, 'video', 'video', "<iframe src='https://www.youtube.com/embed/0NQL3qZKrTE' frameborder='0' allowfullscreen></iframe>");
-
-
-INSERT INTO item (list_id, name, ordernumber) VALUES (1, 'Neymar Jr.', 1);
-INSERT INTO attribute (item_id, ordernumber, label, type, value) VALUES (2, 0, 'club', 'text', 'PSG');
-INSERT INTO attribute (item_id, ordernumber, label, type, value) VALUES (2, 1, 'national team', 'text', 'Brazil');
-
+-- insert some records, sample data
 
 INSERT INTO list (name) VALUES ('Songs');
 INSERT INTO item (list_id, name, ordernumber) VALUES (2, 'Integral', 0);

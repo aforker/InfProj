@@ -1,8 +1,6 @@
 <?php
-
     $isComplete = true;
     $errorMessage = "";
-
     session_start();
     if (!isset($_SESSION['username'])) {
         // if not logged in
@@ -19,6 +17,7 @@
         $attribute = $data['attribute'];
         $value = $data['value'];
         
+        //invalid entry
         if (!isset($attribute) || $attribute == 'username') {
             $isComplete = false;
             $errorMessage .= " invalid attribute. ";

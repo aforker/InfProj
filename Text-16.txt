@@ -25,38 +25,36 @@
                 
                 <!--left hand playlist player panel heading-->
                 <div class="col-xs-3">
-                    <h3>Welcome!</h3>
+                    <h3> Current List</h3>
                 </div>
-                <!--right hand dashboard navigator panel heading
+                <!--right hand dashboard navigator panel heading -->
                 <div class = "col-xs-9">
                     <h3> Dashboard</h3>
-                </div>-->
+                </div>
             </div>
             <!--central panel-->
             <div class = "row">
                 <!-- left hand playlist player panel-->
                 <div class = "col-xs-3">
                     <div class = "panel panel-default" >
-                        <p>Check out our sample list and make an account to create your own!</p>
+                        <p>;aowjeif;aowiejf</p>
                     </div>
                 </div>
-<!--<div class="well ng-scope" ng-repeat="item in data.publications | filter:areaFilter | filter:query">
-            <p class="ng-binding">Hourcade, J.P.. (2017). <a href="" class="ng-binding">Participatory design with children in the autism spectrum: access, gnore &amp; C. DiSalvo (Eds.), Participatory Design. New York: Routledge.</p>
+<!--div class="well ng-scope" ng-repeat="item in data.publications | filter:areaFilter | filter:query">
+            <p class="ng-binding">Hourcade, J.P.. (2017). <a href="" class="ng-binding">Participatory design with children in the autism spectrum: access, participation, personalization, and sustainability</a>. In B. DiSalvo, J. Yip, E. Bonsignore &amp; C. DiSalvo (Eds.), Participatory Design for Learning. New York: Routledge.</p>
         </div-->
                 <div class = "col-xs-9" >
-                    <!--
-                    <a ng-click="selectArea(null)" class="btn btn-default" role="button" >all</a><!--ng-class="getListClass('all')">                    
+                    <a ng-click="selectArea(null)" class="btn btn-default" role="button" >all</a><!--ng-class="getListClass('all')"-->                    
                     <div ng-repeat="list in data | filter:areaFilter | filter:query "  class = "ng-scope">
-                        <a ng-click="selectArea(list)" class="btn btn-default" role="button" ng-class="getListClass(list)">user list</a>-->
-                        
+                        <a ng-click="selectArea(list)" class="btn btn-default" role="button" ng-class="getListClass(list)">user list</a>
                         <h2>{{list.name}}</h2>
-                        <div class="panel panel-default" ng-repeat="item in list.items | filter:query"> <!--loop through to get all-->
+                        <div class="panel panel-default" ng-repeat="item in list.items | filter:query">
                             <div class="panel-heading">
                                     <h4>{{item.name}}</h4>
                             </div>
                             <div ng-repeat="attribute in item.attributes">
                                 <div ng-if="attribute.type=='text'">
-                                    <strong>{{attribute.label}}</strong>: {{attribute.value}}  <!-- key value pair-->
+                                    <strong>{{attribute.label}}</strong>: {{attribute.value}}
                                 </div>
                                 <div ng-if="attribute.type=='video'">
                                     <div class="embed-responsive embed-responsive-16by9">
