@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html ng-app="votelist">
+<head>
+    <title>New </title>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery-3.2.1.min.js"></script>      
+       
+    <!-- bootstrap links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>    
+    <script src="../angular/angular.min.js"></script>
+    <script type="text/javascript" src="votelist.module.js"></script>
+    
+    <!-- data controller -->
+    <script type="text/javascript" src="data.votelist.controller.js"></script>      
+</head>
+<body>
+<div class = "container" ng-controller = "dataControl">
+    <div ng-include ng-init="menuHighlight = 2;"src="'header.html'"></div>
+        <div class = "row">
+            <!-- left hand playlist player panel-->
+            <div class = "col-xs-3">
+                <h2>Current List</h2>
+                <div class = "panel panel-default" >
+                    <div class="panel-heading">
+                        <h1>list name</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- middle panel -->
+            <div class="col-xs-9" >
+                <h2>Choose A List To Edit</h2>
+                <form name="listForm" novalidate>
+                    <div class = "panel panel-default">
+                        <div class="panel-heading">
+                            <!-- title -->
+                                <h3>Title:</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-9">
+                                <p>
+                                    
+                                    
+                                </p>
+                                <form name = "editlistform" novalidate>
+                                    <select ng-model = "listchoice" >
+                                        <div >
+                                            <!-- curlies tells ng model to use functions -->
+                                            <option ng-repeat="list in userlists" value="{{list.id}}">{{list.name}}</option>
+                                        </div>
+                                    </select>
+                                    <button class="btn btn-default pull-right" ng-click="passListIdEdit(listchoice)">Edit Items</button>
+                                    <button class="btn btn-default pull-right" ng-click="passListIdAdd(listchoice)">Add Items</button>
+                                    <button class="btn btn-default pull-right" ng-click="passListIdDelete(listchoice)">Delete List</button>
+                                </form>
+                                <p>
+                                    
+                                    
+                                </p>                           
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</div>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html ng-app="votelist">
+<head>
+    <title>VoteList</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="angular.min.js"></script>
+    <script type="text/javascript" src="votelist.module.js"></script>
+    <script type="text/javascript" src="data.votelist.controller.js"></script>
+    <script type="text/javascript" src="votelist.filter.js"></script>
+</head>
+
+<div class = "container" ng-controller = "dataControl" ng-init = "getAccountId()">
+    <!-- datacontroller link -->
+    <!-- header link goes here -->
+    <div ng-include src = "'header.html'"></div>
+    
+    <body>
+        <div class = "container" >
+            <!-- central pane headings -->
+            <div class= "row">
+                
+                <!--left hand playlist player panel heading-->
+                <div class="col-xs-3">
+                    <h3> Current List</h3>
+                </div>
+                <!--right hand dashboard navigator panel heading -->
+                <div class = "col-xs-9">
+                    <h3> Dashboard</h3>
+                </div>
+            </div>
+            <!--central panel-->
+            <div class = "row">
+                <!-- left hand playlist player panel-->
+                <div class = "col-xs-3">
+                    <div class = "panel panel-default" >
+                        <p>;aowjeif;aowiejf</p>
+                    </div>
+                </div>
+<!--div class="well ng-scope" ng-repeat="item in data.publications | filter:areaFilter | filter:query">
+            <p class="ng-binding">Hourcade, J.P.. (2017). <a href="" class="ng-binding">Participatory design with children in the autism spectrum: access, participation, personalization, and sustainability</a>. In B. DiSalvo, J. Yip, E. Bonsignore &amp; C. DiSalvo (Eds.), Participatory Design for Learning. New York: Routledge.</p>
+        </div-->
+                <div class = "col-xs-9" >
+                    <a ng-show="isloggedin" ng-click="selectArea(null)" class="btn btn-default" role="button" >all</a><!--ng-class="getListClass('all')"-->
+                    <a ng-show="isloggedin" ng-click="selectArea(list)" class="btn btn-default" role="button" ng-class="getListClass(list)">user list</a>
+                    <div ng-repeat="list in data | filter:areaFilter | filter:query "  class = "ng-scope">
+                        
+                        <h2>{{list.name}}</h2>
+                        <div class="panel panel-default" ng-repeat="item in list.items | filter:query">
+                            <div class="panel-heading">
+                                    <h4>{{item.name}}</h4>
+                            </div>
+                            <div ng-repeat="attribute in item.attributes">
+                                
+                                <div ng-if="attribute.type=='text'">
+                                    <strong>{{attribute.label}}</strong>: {{attribute.value}}
+                                </div>
+                                <div ng-if="attribute.type=='video'">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <span ng-bind-html="attribute.value | trustHtml"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </body>
+</div>
+
+</html>
